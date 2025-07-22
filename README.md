@@ -1,6 +1,13 @@
 # Gemini_App_SQL_Text_To_Query
 AI Agent for Converting Text into SQL Query
+
 Create a separate Environment for this project and install the requirements (as menitoned in the requirements.txt file)
+
+Creating an environment: 
+python -m venv my_new_env
+source my_new_env/bin/activate
+pip install -r requirements.txt
+\n
 1. Creating the databases from the excel sheets using SQL Lite and Pandas libraries of Python
 2. Need to define the Code by three parts -
        1. Main Function to take the input as a question

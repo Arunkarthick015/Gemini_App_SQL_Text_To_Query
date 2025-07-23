@@ -7,6 +7,7 @@ import os
 import sqlite3
  
 import google.generativeai as genai
+import pandas as pd
 
 # Configure our API Key
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -24,11 +25,12 @@ def read_sql_query(sql,db):
     cursor = conn.cursor()
     cursor.execute(sql)
     rows = cursor.fetchall()
+    column_names = [description[0] for description in cursor.description]
     conn.commit()
     conn.close()
     for row in rows:
         print(row)
-    return rows
+    return rows,column_names
 
 # Define the prompt properly
 
@@ -89,10 +91,30 @@ submit=st.button("Ask the question")
 if submit:
     response=get_gemini_response(question,prompt) # We get the sql query
     print(response)
-    data=read_sql_query(response,"ecommerce_data.db") # Passing it to find the result of the query
-    st.subheader("The Response is ")
-    for row in data:
-        print(row)
-        st.header(row)
+    data,columns=read_sql_query(response,"ecommerce_data.db") # Passing it to find the result of the query
+    st.divider()
+    st.subheader("📌 Query:")
+    st.text("The text is converted to the following query: ")
+    st.subheader(response)
+    st.code(response,language='sql')
+    st.divider()
+    st.subheader(f"📌 The Response:")
+    st.text(f"for the question '{question}'is")
+    
+    df = pd.DataFrame(data,columns=columns)
+    st.dataframe(df)
+    st.divider()
+
+
+    # Option for adding charts
+    st.subheader("Charts")
+    import matplotlib.pyplot as plt
+    import plotly.express as px
+    x_col = st.selectbox("Select X-axis column", df.columns)
+    default_y_index = 1 if len(columns) > 1 else 0
+    y_col = st.selectbox("Select Y-axis column", columns, index=default_y_index)
+    st.plotly_chart(px.bar(df, x=x_col, y=y_col), use_container_width=True)
+
+
 
         

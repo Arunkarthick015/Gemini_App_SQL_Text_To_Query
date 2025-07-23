@@ -1,4 +1,4 @@
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d9d9db1e-adae-4c18-a6d1-7a56905c1795" /># Gemini_App_SQL_Text_To_Query
+Gemini_App_SQL_Text_To_Query
 AI Agent for Converting Text into SQL Query
 
 Create a separate Environment for this project and install the requirements (as menitoned in the requirements.txt file)

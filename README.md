@@ -1,4 +1,4 @@
-# Gemini_App_SQL_Text_To_Query
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d9d9db1e-adae-4c18-a6d1-7a56905c1795" /># Gemini_App_SQL_Text_To_Query
 AI Agent for Converting Text into SQL Query
 
 Create a separate Environment for this project and install the requirements (as menitoned in the requirements.txt file)
@@ -14,4 +14,5 @@ pip install -r requirements.txt
        2. Convert the question into a query
        3. Use the query to retrive the data by executing it
 3. Use the streamlit app to configure the UI
+4. Demo: https://drive.google.com/file/d/1dmLYie-q8bfb8oHDdacLCD55cusnnTdV/view?usp=drive_link
    
